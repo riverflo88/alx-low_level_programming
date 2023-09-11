@@ -1,0 +1,333 @@
+#!/bin/bash
+cat <<EOF > 2-print_alphabet.c
+#include <stdio.h>
+#include <stdlib.h>
+/**
+ * main - main block
+ * Description: Get a random number and check its last digit, compare it with 5
+ * Return: 0
+ */
+int main(void)
+{
+	char c = 'a';
+
+	while (c <= 'z')
+	{
+		putchar(c);
+		c++;
+	}
+
+	putchar('\n');
+	return (0);
+}
+EOF
+#!/bin/bash
+cat <<EOF > 3-print_alphabets.c
+#include <stdio.h>
+/**
+ * main - main block
+ * Description:  prints the alphabet in lowercase,
+ * and then in uppercase, followed by a new line.
+ * Return: 0
+ */
+int main(void)
+{
+	char c = 'a';
+
+	while (c <= 'z')
+	{
+		putchar(c);
+		c++;
+	}
+
+	c = 'A';
+
+	while (c <= 'Z')
+	{
+		putchar(c);
+		c++;
+	}
+
+	putchar('\n');
+	return (0);
+}
+EOF
+#!/bin/bash
+cat <<EOF > 4-print_alphabt.c
+#include <stdio.h>
+
+/**
+* main - Print the alphabet in lowercase letters, except for e and q
+*
+* Return: Always 0 (Success)
+*/
+int main(void)
+{
+		char letter;
+
+		for (letter = 'a'; letter <= 'z'; letter++)
+		{
+		if (letter != 'e' && letter != 'q')
+		putchar(letter);
+		}
+		putchar('\n');
+
+	return (0);
+}
+EOF 
+#!/bin/bash
+cat <<EOF > 5-print_numbers.c
+#include <stdio.h>
+
+/**
+* main - Print all single digit numbers
+*
+* Return: Always 0 (Success)
+*/
+int main(void)
+{
+	int digit;
+
+	for (digit = 0; digit < 10; digit++)
+	printf("%i", digit);
+	putchar('\n');
+
+	return (0);
+}
+EOF
+#!/bin/bash
+cat <<EOF > 6-print_numberz.c
+#include <stdio.h>
+
+/**
+* main - Print all single digit numbers using only putchar
+*
+* Return: Always 0 (Success)
+*/
+int main(void)
+{
+	int digit;
+
+	for (digit = 0; digit < 10; digit++)
+	putchar(digit + '0');
+
+	putchar('\n');
+
+	return (0);
+}
+EOF
+#!/bin/bash
+cat <<EOF > 7-print_tebahpla.c
+#include <stdio.h>
+
+/**
+* main - Print the alphabet in lowercase letters in reverse
+*
+* Return: Always 0 (Success)
+*/
+int main(void)
+{
+	char letter;
+
+	for (letter = 'z'; letter >= 'a'; letter--)
+	putchar(letter);
+
+	putchar('\n');
+
+	return (0);
+}
+EOF
+#!/bin/bash
+cat <<EOF > 8-print_base16.c
+#include <stdio.h>
+
+/**
+* main - Print the numbers of base 16 in lowercase
+*
+* Return: Always 0 (Success)
+*/
+int main(void)
+{
+		char digit;
+
+		for (digit = '0'; digit <= '9'; digit++)
+		putchar(digit);
+
+		for (digit = 'a'; digit <= 'f'; digit++)
+		putchar(digit);
+
+		putchar('\n');
+
+	return (0);
+}
+EOF
+#!/bin/bash
+cat <<EOF > 9-print_comb.c
+#include <stdio.h>
+#include <stdlib.h>
+/**
+ * main - main block
+ * Description: prints all single digit numbers of base 10
+ * starting from 0, followed by a new line.
+ * Return: 0
+ */
+int main(void)
+{
+	int c = 0;
+
+	while (c < 10)
+	{
+		putchar(48 + c);
+		if (c != 9)
+		{
+			putchar(',');
+			putchar(' ');
+		}
+		c++;
+	}
+	putchar('\n');
+	return (0);
+}
+EOF
+#!/bin/bash
+cat <<EOF > 100-print_comb3.c
+#include <stdio.h>
+#include <stdlib.h>
+/**
+ * main - main block
+ * Description: Write a program that prints all possible
+ * different combinations of two digits
+ * Numbers must be separated by ,, followed by a space
+ * The two digits must be different
+ * 01 and 10 are considered the same combination of the two digits 0 and 1
+ * Print only the smallest combination of two digits
+ * Numbers should be printed in ascending order, with two digits
+ * You can only use the putchar function
+ * (every other function (printf, puts, etc…) is forbidden)
+ * You can only use putchar five times maximum in your code
+ * You are not allowed to use any variable of type char
+ * All your code should be in the main function
+ * Return: 0
+ */
+int main(void)
+{
+	int c;
+	int d = 0;
+
+	while (d < 10)
+	{
+		c = 0;
+		while (c < 10)
+		{
+			if (d != c && d < c)
+			{
+				putchar('0' + d);
+				putchar('0' + c);
+
+				if (c + d != 17)
+				{
+					putchar(',');
+					putchar(' ');
+				}
+			}
+
+			c++;
+		}
+		d++;
+	}
+	putchar('\n');
+	return (0);
+}
+EOF
+#!/bin/bash
+cat <<EOF > 101-print_comb4.c
+#include <stdio.h>
+#include <stdlib.h>
+/**
+ * main - main block
+ * Description: Write a program that prints all possible
+ * different combinations of two digits
+ * Numbers must be separated by ,, followed by a space
+ * The two digits must be different
+ * 01 and 10 are considered the same combination of the two digits 0 and 1
+ * Print only the smallest combination of two digits
+ * Numbers should be printed in ascending order, with two digits
+ * You can only use the putchar function
+ * (every other function (printf, puts, etc…) is forbidden)
+ * You can only use putchar five times maximum in your code
+ * You are not allowed to use any variable of type char
+ * All your code should be in the main function
+ * Return: 0
+ */
+int main(void)
+{
+	int c;
+	int d;
+	int e = 0;
+
+	while (e < 10)
+	{
+		d = 0;
+		while (d < 10)
+		{
+			c = 0;
+			while (c < 10)
+			{
+				if (c != d && d != e && e < d && d < c)
+				{
+					putchar('0' + e);
+					putchar('0' + d);
+					putchar('0' + c);
+
+					if (c + d + e != 9 + 8 + 7)
+					{
+						putchar(',');
+						putchar(' ');
+					}
+				}
+
+				c++;
+			}
+			d++;
+		}
+		e++;
+	}
+	putchar('\n');
+	return (0);
+}
+EOF
+#!/bin/bash
+cat <<EOF > 102-print_comb5.c
+#include <stdio.h>
+/**
+ * main - create 2 pairs of number
+ * Return: 0
+ */
+int main(void)
+{
+	int i, j;
+
+	for (i = 0; i <= 99; i++)
+	{
+		for (j = i; j <= 99; j++)
+		{
+			if (j != i)
+			{
+				putchar(i / 10 + 48);
+				putchar(i % 10 + 48);
+				putchar(' ');
+				putchar(j / 10 + 48);
+				putchar(j % 10 + 48);
+
+				if (i * 100 + j != 9899)
+				{
+					putchar(',');
+					putchar(' ');
+				}
+			}
+		}
+	}
+	putchar('\n');
+	return (0);
+}
+EOF
