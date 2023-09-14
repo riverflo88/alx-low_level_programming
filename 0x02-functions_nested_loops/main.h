@@ -5,6 +5,4 @@
  * Header file for all prototypes
  * used in 0x02-functions_nested_loops
  */
-int _putchar(char c)
-
-#endif
+int _putchar(char c);
