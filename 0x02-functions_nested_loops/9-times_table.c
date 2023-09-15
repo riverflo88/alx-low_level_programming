@@ -18,16 +18,15 @@ void times_table(void)
         {
             k = i * j;
             
-            putchar((k / 10) + 0);
+            _putchar((k / 10) + 0);
             if ((k % 10) > 0)
-                putchar((k % 10) + 0);
+                _putchar((k % 10) + 0);
 
             j++;
             _putchar(',');
             _putchar(' ');
         }
 
-        _putchar('$');
         i++;
     }
 }
