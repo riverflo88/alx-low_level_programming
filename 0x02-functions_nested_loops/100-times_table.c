@@ -45,7 +45,7 @@ void print_times_table(int n)
                                 _putchar(((k % 100)) % 10 + '0');
                         }
 
-                        }
+                }
                         if (j < n)
                         {
                                 _putchar(',');
@@ -53,6 +53,6 @@ void print_times_table(int n)
                         }
 
                 _putchar('\n');
-                }
         }
 }
+
