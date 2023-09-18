@@ -1,0 +1,393 @@
+#!/bin/bash
+
+
+cat <<EOF > 0-isupper.c
+#include "main.h"
+
+/**
+ * _isupper - checks for uppercase character
+ *
+ * @c: the character to be check
+ *
+ * Return: 1 if is uppercase, 0 otherwise
+ */
+int _isupper(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+}
+EOF
+cat <<EOF > 1-isdigit.c
+#include "main.h"
+
+/**
+ * _isdigit - a function that checks for a digit (0 through 9)
+ * @c: digit to be checked
+ * Return: 1 if c is uppercase 0 otherwise
+ */
+int _isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+}
+EOF
+
+cat <<EOF > 10-print_triangle.c
+#include "main.h"
+
+/**
+ * print_triangle - prints a triangle, followed by a new line
+ * @size: size of the t triangle
+ */
+void print_triangle(int size)
+{
+	if (size <= 0)
+	{
+		_putchar('\n');
+	}
+	else
+	{
+		int i, j;
+
+		for (i = 1; i <= size; i++)
+		{
+			for (j = i; j < size; j++)
+			{
+				_putchar(' ');
+			}
+
+			for (j = 1; j <= i; j++)
+			{
+				_putchar('#');
+			}
+			_putchar('\n');
+		}
+	}
+}
+EOF
+
+cat <<EOF > 100-prime_factor.c
+#include <stdio.h>
+#include <math.h>
+
+/**
+ * main - finds and print the largest prime factor of the number 612852475143
+ * followed by new line
+ * Return: 0 (Success)
+ */
+int main(void)
+{
+	long int n;
+	long int max;
+	long int i;
+
+	n = 612852475143;
+	max = -1;
+
+	while (n % 2 == 0)
+	{
+		max = 2;
+		n /= 2;
+	}
+
+	for (i = 3; i <= sqrt(n); i = i + 2)
+	{
+		while (n % i == 0)
+		{
+			max = i;
+			n = n / i;
+		}
+	}
+
+	if (n > 2)
+		max = n;
+
+	printf("%ld\n", max);
+
+	return (0);
+}
+EOF
+
+cat <<EOF > 101-print_number.c
+#include "main.h"
+
+/**
+ * print_number- a function that prints an integer.
+ * @n: integer
+ * Return: 0
+ */
+void print_number(int n)
+{
+	unsigned int i = n;
+
+	if (n < 0)
+	{
+		_putchar(45);
+		i = -i;
+	}
+	if (i / 10)
+	{
+		print_number(i / 10);
+	}
+	_putchar(i % 10 + '0');
+}
+EOF
+
+cat <<EOF > 2-mul.c
+#include "main.h"
+
+/**
+ * mul - a function that multiplies two integers
+ * @a: first integer
+ * @b: second interger
+ * Return: 0
+ */
+int mul(int a, int b)
+{
+	int c;
+
+	c = a * b;
+	return (c);
+}
+EOF
+
+cat <<EOF > 3-print_numbers.c
+#include "main.h"
+
+/**
+ * print_numbers - prints the numbers, from 0 to 9,
+ * followed by a new line
+ */
+void print_numbers(void)
+{
+	int i;
+
+	for (i = 0; i < 10; i++)
+	{
+		_putchar(i + '0');
+	}
+
+	_putchar('\n');
+}
+EOF
+
+cat <<EOF > 4-print_most_numbers.c
+#include "main.h"
+
+/**
+ * print_most_numbers- prints the numbers, from 0 to 9
+ * Do not print 2 and 4
+ * Return: void
+ */
+void print_most_numbers(void)
+{
+	int i;
+
+	for (i = 0; i < 10; i++)
+	{
+		if (i != 2 && i != 4)
+		{
+			_putchar(i + '0');
+		}
+	}
+	_putchar('\n');
+}
+EOF
+
+cat <<EOF > 5-more_numbers.c
+#include "main.h"
+
+/**
+ * more_numbers - prints 10 times the numbers, from 0 to 14
+ * followed by a new line
+ */
+void more_numbers(void)
+{
+	int i, j;
+
+	for (i = 0; i < 10; i++)
+	{
+		for (j = 0; j < 15; j++)
+		{
+			if (j >= 10)
+				_putchar(j / 10 + '0');
+			_putchar(j % 10 + '0');
+		}
+		_putchar('\n');
+	}
+}
+EOF
+
+cat <<EOF > 6-print_line.c
+#include "main.h"
+
+/**
+ * print_line-draws a straight line in the terminal
+ * @n: number of times the character _
+ * Return:0
+ */
+void print_line(int n)
+{
+	if (n <= 0)
+	{
+		_putchar('\n');
+	}
+	else
+	{
+		int i;
+
+		for (i = 1; i <= n; i++)
+		{
+			_putchar('_');
+		}
+		_putchar('\n');
+	}
+}
+EOF
+
+
+cat <<EOF > 7-print_diagonal.c
+#include "main.h"
+
+/**
+ * print_diagonal-a function that draws a diagonal line on the terminal
+ * @n: the number of times the character \
+ * Return: 0
+ */
+void print_diagonal(int n)
+{
+	if (n <= 0)
+	{
+		_putchar('\n');
+	}
+	else
+	{
+		int i, j;
+
+		for (i = 0; i < n; i++)
+		{
+			for (j = 0; j < n; j++)
+			{
+				if (j == i)
+				{
+					_putchar('\\');
+				}
+				else if (j < i)
+				{
+					_putchar(' ');
+				}
+			}
+			_putchar('\n');
+		}
+	}
+}
+EOF
+
+cat <<EOF > 8-print_square.c
+#include "main.h"
+
+/**
+ * print_square - a function that prints a square
+ * @size: the size of the square
+ * Return: 0
+ */
+void print_square(int size)
+{
+	if (size <= 0)
+	{
+		_putchar('\n');
+	}
+	else
+	{
+		int i, k;
+
+		for (i = 0; i < size; i++)
+		{
+			for (k = 0; k < size; k++)
+			{
+				_putchar('#');
+			}
+			_putchar('\n');
+		}
+	}
+}
+EOF
+
+cat <<EOF > 9-fizz_buzz.c
+#include <stdio.h>
+
+/**
+ * main - prints the number from 1 - 100, but for mult of 3 & 5 print Fizz Buzz
+ *
+ * Return: Always 0 (Success)
+**/
+
+int main(void)
+{
+	int i;
+
+	for (i = 1 ; i < 100 ; i++)
+	{
+		if ((i % 3) == 0 && (i % 5) == 0)
+		{
+			printf("FizzBuzz ");
+		}
+		else if (i % 3 == 0)
+		{
+			printf("Fizz ");
+		}
+		else if (i % 5 == 0)
+		{
+			printf("Buzz ");
+		}
+		else
+		{
+		printf("%d ", i);
+		}
+	}
+
+	printf("Buzz");
+	printf("\n");
+
+	return (0);
+}
+
+EOF
+
+cat <<EOF > main.h
+#ifndef FILE_MAIN
+#define FILE_MAIN
+
+int _putchar(char c);
+int _isupper(int c);
+int _isdigit(int c);
+int mul(int a, int b);
+void print_numbers(void);
+void print_most_numbers(void);
+void more_numbers(void);
+void print_line(int n);
+void print_diagonal(int n);
+void print_square(int size);
+void print_triangle(int size);
+void print_number(int n);
+
+#endif
+
+EOF
+
+cat <<EOF > README.md
+0x04. C - More functions, more nested loops
+
+EOF
