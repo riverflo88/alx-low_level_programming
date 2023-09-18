@@ -85,7 +85,7 @@ void print_rev(char *s)
 
 	_putchar('\n');
 }
-
+EOF
 
 cat <<EOF > 5-rev_string.c
 #include "main.h"
@@ -116,7 +116,6 @@ void rev_string(char *s)
 	}
 }
 EOF
-
 
 cat <<EOF > 6-puts2.c
 #include "main.h"
