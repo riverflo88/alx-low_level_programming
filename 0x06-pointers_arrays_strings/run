@@ -1,0 +1,464 @@
+#!/bin/bash
+cat <<EOF > 7-leet.c
+#include "main.h"
+
+/**
+ * leet - Encodes a string in 1337
+ * @s: string to be encoded
+ *
+ * Return: the resulting string
+ */
+char *leet(char *s)
+{
+	int i, j;
+
+	char *a = "aAeEoOtTlL";
+	char *b = "4433007711";
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		for (j = 0; j < 10; j++)
+		{
+			if (s[i] == a[j])
+			{
+				s[i] = b[j];
+			}
+		}
+	}
+
+	return (s);
+}
+EOF
+
+cat <<EOF > 0-strcat.c
+#include "main.h"
+
+/**
+ * _strcat - function that concatenates two strings
+ * @dest: the first string to be concatenated
+ * @src: second string to be concatenated
+ *
+ * Return: a pointer to the resulting string
+ */
+char *_strcat(char *dest, char *src)
+{
+	char *ptr = dest;
+
+	while (*ptr != '\0')
+	{
+		ptr++;
+	}
+
+	while (*src != '\0')
+	{
+		*ptr = *src;
+		ptr++;
+		src++;
+	}
+	*ptr = '\0';
+
+	return (dest);
+}
+EOF
+
+cat <<EOF > 2-strncpy.c
+#include "main.h"
+
+/**
+ * _strncpy - a function that copies a string
+ * @dest: we copy to this string
+ * @src: we copy from this string
+ * @n: number of bytes to copy
+ *
+ * Return: pointer to the resulting string
+ */
+char *_strncpy(char *dest, char *src, int n)
+{
+	int i;
+
+	i = 0;
+
+	while (src[i] != '\0' && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
+}
+EOF
+
+cat <<EOF > 3-strcmp.c
+#include "main.h"
+
+/**
+ * _strcmp - a function that compares two strings.
+ * @s1: first stings to be  compared
+ * @s2: second string to be compared
+ *
+ * Return: less than 0 if s1 is less than s2, 0 if they're
+ * equal more than 0 if  is greateer than s2
+ */
+int _strcmp(char *s1, char *s2)
+{
+	while (*s1 == *s2)
+	{
+		if (*s1 == '\0')
+		{
+			return (0);
+		}
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
+}
+EOF
+
+cat <<EOF > 4-rev_array.c
+#include "main.h"
+
+/**
+ * reverse_array - reverses an array of integers
+ * @a: array to be reversed
+ * @n: number of elements in the array
+ */
+void reverse_array(int *a, int n)
+{
+	int i, j, tmp;
+
+	j = n - 1;
+
+	for (i = 0; i < n / 2; i++)
+	{
+		tmp = a[i];
+		a[i] = a[j];
+		a[j--] = tmp;
+	}
+}
+EOF
+
+cat <<EOF > 5-string_toupper.c
+#include "main.h"
+
+/**
+ * string_toupper - changes all lowercase letters of a string
+ * to uppercase
+ * @s: string to modify
+ *
+ * Return: the resulting string
+ */
+char *string_toupper(char *s)
+{
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (s[i] >= 'a' && s[i] <= 'z')
+			s[i] = s[i] - 32;
+	}
+
+	return (s);
+}
+EOF
+
+cat <<EOF > 6-cap_string.c
+#include "main.h"
+
+/**
+ * cap_string - capitalizes every word of a string
+ * @s: string to modify
+ *
+ * Return: the resulting string
+ */
+char *cap_string(char *s)
+{
+	int i, j;
+
+	char spe[13] = {' ', '\t', '\n', ',', ';', '.',
+		'!', '?', '"', '(', ')', '{', '}'};
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (i == 0 && s[i] >= 'a' && s[i] <= 'z')
+			s[i] -= 32;
+
+		for (j = 0; j < 13; j++)
+		{
+			if (s[i] == spe[j])
+			{
+				if (s[i + 1] >= 'a' && s[i + 1] <= 'z')
+				{
+					s[i + 1] -= 32;
+				}
+			}
+		}
+	}
+
+	return (s);
+}
+EOF
+
+cat <<EOF > 7-leet.c
+#include "main.h"
+
+/**
+ * leet - Encodes a string in 1337
+ * @s: string to be encoded
+ *
+ * Return: the resulting string
+ */
+char *leet(char *s)
+{
+	int i, j;
+
+	char *a = "aAeEoOtTlL";
+	char *b = "4433007711";
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		for (j = 0; j < 10; j++)
+		{
+			if (s[i] == a[j])
+			{
+				s[i] = b[j];
+			}
+		}
+	}
+
+	return (s);
+}
+EOF
+
+cat <<EOF > 100-rot13.c
+#include "main.h"
+
+/**
+ * rot13 -  Encodes a string in rot13
+ * @s: string to be encoded
+ *
+ * Return: the resulting string
+ */
+char *rot13(char *s)
+{
+	int i, j;
+
+	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		for (j = 0; a[j] != '\0'; j++)
+		{
+			if (s[i] == a[j])
+			{
+				s[i] = b[j];
+				break;
+			}
+		}
+	}
+	return (s);
+}
+EOF
+
+cat <<EOF > 101-print_number.c
+#include "main.h"
+
+/**
+ * print_number -a function that prints an  interger
+ * @n: integer to be printed
+ */
+void print_number(int n)
+{
+	unsigned int x;
+
+	if (n < 0)
+	{
+		x = -n;
+		_putchar('-');
+	} else
+	{
+		x = n;
+	}
+
+	if (x / 10)
+		print_number(x / 10);
+
+	_putchar((x % 10) + '0');
+}
+
+EOF
+
+cat <<EOF > 102-magic.c
+#include <stdio.h>
+
+int main(void)
+{
+  int n;
+  int a[5];
+  int *p;
+
+  a[2] = 1024;
+  p = &n;
+  /*
+   * write your line of code here...
+   * Remember:
+   * - you are not allowed to use a
+   * - you are not allowed to modify p
+   * - only one statement
+   * - you are not allowed to code anything else than this line of code
+   */
+  *(p + 5) = 98;
+  /* ...so that this prints 98\n */
+  printf("a[2] = %d\n", a[2]);
+  return (0);
+}
+EOF
+
+cat <<EOF > 103-infinite_add.c
+#include "main.h"
+
+/**
+ * rev_string - reverse array
+ * @n: integer params
+ * Return: 0
+ */
+
+void rev_string(char *n)
+{
+	int i = 0;
+	int j = 0;
+	char temp;
+
+	while (*(n + i) != '\0')
+	{
+		i++;
+	}
+	i--;
+
+	for (j = 0; j < i; j++, i--)
+	{
+		temp = *(n + j);
+		*(n + j) = *(n + i);
+		*(n + i) = temp;
+	}
+}
+
+/**
+ * infinite_add - add 2 numbers together
+ * @n1: text representation of 1st number to add
+ * @n2: text representation of 2nd number to add
+ * @r: pointer to buffer
+ * @size_r: buffer size
+ * Return: pointer to calling function
+ */
+
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
+{
+	int overflow = 0, i = 0, j = 0, digits = 0;
+	int val1 = 0, val2 = 0, temp_tot = 0;
+
+	while (*(n1 + i) != '\0')
+		i++;
+	while (*(n2 + j) != '\0')
+		j++;
+	i--;
+	j--;
+	if (j >= size_r || i >= size_r)
+		return (0);
+	while (j >= 0 || i >= 0 || overflow == 1)
+	{
+		if (i < 0)
+			val1 = 0;
+		else
+			val1 = *(n1 + i) - '0';
+		if (j < 0)
+			val2 = 0;
+		else
+			val2 = *(n2 + j) - '0';
+		temp_tot = val1 + val2 + overflow;
+		if (temp_tot >= 10)
+			overflow = 1;
+		else
+			overflow = 0;
+		if (digits >= (size_r - 1))
+			return (0);
+		*(r + digits) = (temp_tot % 10) + '0';
+		digits++;
+		j--;
+		i--;
+	}
+	if (digits == size_r)
+		return (0);
+	*(r + digits) = '\0';
+	rev_string(r);
+	return (r);
+}
+EOF
+
+cat <<EOF > 104-print_buffer.c
+#include "main.h"
+#include <stdio.h>
+
+/**
+ * print_line - prints a s bytes of a buffer
+ * @c: buffer to print
+ * @s: bytes of buffer to print
+ * @l: line of buffer to print
+ *
+ * Return: void
+ */
+void print_line(char *c, int s, int l)
+{
+	int x, k;
+
+	for (x = 0; x <= 9; x++)
+	{
+		if (x <= s)
+			printf("%02x", c[l * 10 + x]);
+		else
+			printf("  ");
+		if (x % 2)
+			putchar(' ');
+	}
+	for (k = 0; k <= s; k++)
+	{
+		if (c[l * 10 + k] > 31 && c[l * 10 + k] < 127)
+			putchar(c[l * 10 + k]);
+		else
+			putchar('.');
+	}
+}
+
+/**
+ * print_buffer - a function that prints a buffer
+ * @b: buffer to print
+ * @size: size of buffer
+ *
+ * Return: void
+ */
+void print_buffer(char *b, int size)
+{
+	int i;
+
+	for (i = 0; i <= (size - 1) / 10 && size; i++)
+	{
+		printf("%08x: ", i * 10);
+		if (i < size / 10)
+		{
+			print_line(b, 9, i);
+		}
+		else
+		{
+			print_line(b, size % 10 - 1, i);
+		}
+		putchar('\n');
+	}
+	if (size == 0)
+		putchar('\n');
+}
+EOF
