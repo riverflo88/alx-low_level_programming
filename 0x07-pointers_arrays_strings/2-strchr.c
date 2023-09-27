@@ -12,19 +12,19 @@
 char *_strchr(char *s, char c)
 {
 	int i;
-    char test = 'T';
+    	char test = 'T';
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		if (s[i] == c)
 		{
-            test = 'F';
+			test = 'F';
 			return (s + i);
 		}
 		
 	}
-    if (test == 'F')
-		{
-			return (NULL);
-		}
+	if (test == 'T')
+	{
+		return (NULL);
+	}
 }
