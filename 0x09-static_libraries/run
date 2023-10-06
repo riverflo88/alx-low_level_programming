@@ -1,0 +1,321 @@
+#!/bin/bash
+cat <<EOF > 1-strncat.c
+#include "main.h"
+
+/**
+ * *_strncat - Function that concatenates two strings
+ * @dest: first string to be concatenated
+ * @src: second string to be concatenated
+ * @n: interge to be concatenated
+ *
+ * Return: a pointer dest
+ */
+char *_strncat(char *dest, char *src, int n)
+{
+	int i, j;
+
+	i = 0;
+	j = 0;
+	while (dest[i] != '\0')
+		i++;
+	while (src[j] != '\0' && j < n)
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+EOF
+
+cat <<EOF > 2-strncpy.c
+#include "main.h"
+
+/**
+ * _strncpy - a function that copies a string
+ * @dest: we copy to this string
+ * @src: we copy from this string
+ * @n: number of bytes to copy
+ *
+ * Return: pointer to the resulting string
+ */
+char *_strncpy(char *dest, char *src, int n)
+{
+	int i;
+
+	i = 0;
+
+	while (src[i] != '\0' && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
+}
+EOF
+
+cat <<EOF > 3-islower.c
+#include "main.h"
+
+/**
+ * _islower - check id character is lowercase
+ * @c: checks if the character 'c' is lowercase
+ * Return: 1 if c is lowercase, 0 otherwise
+ */
+int _islower(int c)
+{
+	if (c >= 'a' && c <= 'z')
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+}
+EOF
+
+cat <<EOF > 4-isalpha.c
+#include "main.h"
+
+/**
+ * _isalpha - chack if character is lowercase
+ * @c: checks if the character 'c' is lowercase
+ * Return: 1 if c is lowercase, 0 otherwise
+ */
+int _isalpha(int c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+}
+EOF
+
+cat <<EOF > 5-strstr.c
+#include "main.h"
+#include <stdio.h>
+
+/**
+ * *_strstr - Fuction that locates a substring
+ * @haystack: string to search
+ * @needle: the substring
+ *
+ * Return: Pointer to the beginning of the located substring,
+ * or null if the substring is not found
+ */
+char *_strstr(char *haystack, char *needle)
+{
+	int i, j;
+
+	for (i = 0; haystack[i] != '\0'; i++)
+	{
+		for (j = 0; needle[j] != '\0'; j++)
+		{
+			if (haystack[i + j] != needle[j])
+				break;
+		}
+		if (!needle[j])
+			return (&haystack[i]);
+	}
+	return (NULL);
+}
+EOF
+
+cat <<EOF > 6-abs.c
+#include "main.h"
+
+/**
+ * _abs - computes the absolute value of an integer
+ * @a: the interger to compute its absolute value
+ * Return: absValue
+ */
+int _abs(int a)
+{
+	int k = a;
+
+	if (k < 0)
+	{
+		k = k * (-1);
+	}
+	return (k);
+}
+EOF
+
+cat <<EOF > 9-strcpy.c
+#include "main.h"
+
+/**
+ * *_strcpy - copy the string pointed to by src
+ * include the terminating null byte (\0)
+ * to the buffer pointed to by dest
+ * @dest: pointer to the buffer in which we copy the string
+ * @src: string to be copied
+ *
+ * Return: the pointer to dest
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int len, i;
+
+	len = 0;
+
+	while (src[len] != '\0')
+	{
+		len++;
+	}
+	for (i = 0; i < len; i++)
+	{
+		dest[i] = src[i];
+	}
+	dest[i] = '\0';
+
+	return (dest);
+}
+EOF
+
+cat <<EOF > 100-atoi.c
+#include "main.h"
+
+/**
+ * _atoi - converts a string to an integer
+ * @s: string to be converted
+ *
+ * Return: the int converted from string
+ */
+int _atoi(char *s)
+{
+	int i, d, n, len, f, digit;
+
+	i = 0;
+	d = 0;
+	n = 0;
+	len = 0;
+	f = 0;
+	digit = 0;
+
+	while (s[len] != '\0')
+		len++;
+
+	while (i < len && f == 0)
+	{
+		if (s[i] == '_')
+			++d;
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			digit = s[i] - '0';
+			if (d % 2)
+				digit = -digit;
+			n = n * 10 + digit;
+			f = 1;
+			if (s[i + 1] < '0' || s[i + 1] > '9')
+				break;
+			f = 0;
+		}
+		i++;
+	}
+	if (f == 0)
+		return (0);
+	return (n);
+}
+EOF
+
+cat <<EOF > 1-memcpy.c
+#include "main.h"
+
+/**
+ * _memcpy - Function that copies memory area
+ * @dest: destination memory
+ * @src: memory area to copy from
+ * @n: number of bytes to copy
+ *
+ * Return: a pointer to dest
+ */
+char *_memcpy(char *dest, char *src, unsigned int n)
+{
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+	{
+		dest[i] = src[i];
+	}
+	return (dest);
+}
+EOF
+
+cat <<EOF > 1-isdigit.c
+#include "main.h"
+
+/**
+ * _isdigit - a function that checks for a digit (0 through 9)
+ * @c: digit to be checked
+ * Return: 1 if c is uppercase 0 otherwise
+ */
+int _isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+}
+EOF
+
+cat <<EOF > 0-memset.c
+#include "main.h"
+
+/**
+ * _memset - Fuction that fills memory with a constant byte
+ * @s: memory srea to be filled
+ * @b: charactor to copy
+ * @n: number of time to copy b
+ * Return: pointer to the memory area s
+ */
+char *_memset(char *s, char b, unsigned int n)
+{
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+	{
+		s[i] = b;
+	}
+	return (s);
+}
+EOF
+
+cat <<EOF > 0-isupper.c
+#include "main.h"
+
+/**
+ * _isupper - checks for uppercase character
+ * @c: the character to be check
+ *
+ * Return: 1 if is uppercase, 0 otherwise
+ */
+int _isupper(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+}
+EOF
+
