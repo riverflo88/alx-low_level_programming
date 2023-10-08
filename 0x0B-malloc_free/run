@@ -1,0 +1,320 @@
+#!/bin/bash
+cat <<EOF > 0-create_array.c
+#include "main.h"
+#include <stdlib.h>
+
+/**
+ * create_array - Function that creates an array of chars,
+ * and initializes it with a specific char
+ * @size: the size of an array to be created
+ * @c: the  character to initialized  the array c
+ * Return: Pointer to array (Success), Null (Error)
+ */
+char *create_array(unsigned int size, char c)
+{
+	char *n;
+	unsigned int i = 0;
+
+	n = malloc(size * sizeof(char));
+
+	if (n == NULL)
+		return (NULL);
+	if (size == 0)
+		return (NULL);
+	while (i < size)
+	{
+		n[i] = c;
+		i++;
+	}
+	return (n);
+}
+EOF
+
+cat <<EOF > 0-create_array.c
+
+#include <stdlib.h>
+#include "main.h"
+
+/**
+ * _strdup - Function that returns a pointer to a newly allocated
+ * space in memory, which contains a copy of the string given
+ * as a parameter
+ * @str: an input pointer of  string to duplicate
+ * Return: Pointer to new string or NULL if it str is NULL
+ */
+char *_strdup(char *str)
+{
+	char *m;
+	unsigned int i, len;
+
+	i = 0;
+	len = 0;
+
+	if (str == NULL)
+		return (NULL);
+
+	while (str[len])
+		len++;
+
+	m = malloc(sizeof(char) * (len + 1));
+
+	if (m == NULL)
+		return (NULL);
+
+	while ((m[i] = str[i]) != '\0')
+		i++;
+
+	return (m);
+}
+EOF
+
+cat <<EOF > 2-str_concat.c
+
+#include "main.h"
+#include <stdlib.h>
+#include <stdio.h>
+/**
+ * str_concat - Fuction which concatenates two strings
+ * @s1: first string to concatenate
+ * @s2: second string to concatenate
+ * Return: Pointer to a new string created (Sucess), or NULL (Error)
+ */
+char *str_concat(char *s1, char *s2)
+{
+	int i, x, len, len1, len2;
+	char *res;
+
+	len1 = len2 = 0;
+
+	if (s1 != NULL)
+	{
+		i = 0;
+		while (s1[i++] != '\0')
+			len1++;
+	}
+
+	if (s2 != NULL)
+	{
+		i = 0;
+		while (s2[i++] != '\0')
+			len2++;
+	}
+
+	len = len1 + len2;
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (res == NULL)
+		return (NULL);
+
+	for (i = 0; i < len1; i++)
+		res[i] = s1[i];
+
+	for (x = 0; x < len2; x++, i++)
+		res[i] = s2[x];
+	res[len] = '\0';
+
+	return (res);
+}
+EOF
+
+
+cat <<EOF > 3-alloc_grid.c
+
+#include "main.h"
+#include <stdlib.h>
+
+/**
+ * alloc_grid - Function that returns a pointer
+ * to a 2 dimensional array of integers
+ * @width: width of array
+ * @height: height of array
+ * Return: A pointer to two dimensional array of integers
+ */
+int **alloc_grid(int width, int height)
+{
+	int **arr, i, x;
+	int area = width * height;
+
+	if (area <= 0)
+		return (NULL);
+
+	arr = (int **)malloc(sizeof(int *) * height);
+	if (arr == NULL)
+		return (NULL);
+
+	for (i = 0; i < height; i++)
+	{
+		arr[i] = (int *)malloc(sizeof(int) * width);
+		if (arr[i] == NULL)
+		{
+			for (i--; i >= 0; i--)
+				free(arr[i]);
+			free(arr);
+			return (NULL);
+		}
+	}
+
+	for (i = 0; i < height; i++)
+		for (x = 0; x < width; x++)
+			arr[i][x] = 0;
+	return (arr);
+}
+EOF
+
+cat <<EOF > 4-free_grid.c
+#include "main.h"
+#include <stdlib.h>
+
+/**
+ * free_grid - Function that frees a 2 dimensional grid previously created
+ * @grid: grid to free up
+ * @height: the height of the grid
+ */
+void free_grid(int **grid, int height)
+{
+	int x;
+
+	for (x = 0; x < height; x++)
+		free(grid[x]);
+	free(grid);
+}
+EOF
+
+cat <<EOF > 100-argstostr.c
+#include "main.h"
+#include <stdlib.h>
+
+/**
+ * argstostr - Function to concatenates all the arguments of program
+ * @ac: arguments count
+ * @av: arguments vector
+ * Return: A pointer to a new string, or NULL if it fails
+ */
+char *argstostr(int ac, char **av)
+{
+	char *str, *s;
+	int i, x, k, len = 0;
+
+	if (ac == 0 || av == NULL)
+		return (NULL);
+
+	for (i = 0; i < ac; i++)
+	{
+		s = av[i];
+		x = 0;
+
+		while (s[x++])
+			len++;
+		len++;
+	}
+
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if  (str == NULL)
+		return (NULL);
+
+	for (i = 0, x = 0; i < ac && x < len; i++)
+	{
+		s = av[i];
+		k = 0;
+
+		while (s[k])
+		{
+			str[x] = s[k];
+			k++;
+			x++;
+		}
+		str[x++] = '\n';
+	}
+	str[x] = '\0';
+	return (str);
+}
+EOF
+
+cat<<EOF > 101-strtow.c
+
+#include <stdlib.h>
+#include "main.h"
+
+/**
+ * count_words - child function to count number of words in a string
+ * @k: string to evaluate
+ * Return: total words counted
+ */
+int count_words(char *k)
+{
+	int g, c, x;
+
+	g = 0;
+	x = 0;
+
+	for (c = 0; k[c] != '\0'; c++)
+	{
+		if (k[c] == ' ')
+			g = 0;
+		else if (g == 0)
+		{
+			g = 1;
+			x++;
+		}
+	}
+	return (x);
+}
+/**
+ * **strtow - Function that splits a string into words
+ * @str: string to be splited
+ * Return: Pointer to an array of string (words)
+ */
+char **strtow(char *str)
+{
+	char **matrix, *tmp;
+	int i, k = 0, len = 0, words, c = 0, start, end;
+
+	while (*(str + len))
+		len++;
+	words = count_words(str);
+	if (words == 0)
+		return (NULL);
+
+	matrix = (char **)malloc(sizeof(char *) * (words + 1));
+	if (matrix == NULL)
+		return (NULL);
+
+	for (i = 0; i <= len; i++)
+	{
+		if (str[i] == ' ' || str[i] == '\0')
+		{
+			if (c)
+			{
+				end = i;
+				tmp = (char *)malloc(sizeof(char) * (c + 1));
+				if (tmp == NULL)
+					return (NULL);
+				while (start < end)
+					*tmp++ = str[start++];
+				*tmp = '\0';
+				matrix[k] = tmp - c;
+				k++;
+				c = 0;
+			}
+		}
+		else if (c++ == 0)
+			start = i;
+	}
+	matrix[k] = NULL;
+	return (matrix);
+}
+EOF
+
+cat<<EOF> main.h 
+#ifndef FILE_MAIN
+#define FILE_MAIN
+
+char *create_array(unsigned int size, char c);
+char *_strdup(char *str);
+char *str_concat(char *s1, char *s2);
+int **alloc_grid(int width, int height);
+void free_grid(int **grid, int height);
+char *argstostr(int ac, char **av);
+char **strtow(char *str);
+
+#endif
+EOF
