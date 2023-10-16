@@ -1,0 +1,149 @@
+#!/bin/bash
+cat <<EOF > 0-sum_them_all.c
+#include "variadic_functions.h"
+
+/**
+ * sum_them_all - Function that returns the sum of all its parameters
+ * @n: count of extra params
+ * Return: the result sum
+ */
+int sum_them_all(const unsigned int n, ...)
+{
+	unsigned int i;
+	int sum = 0;
+	va_list params;
+
+	if (n == 0)
+		return (0);
+	va_start(params, n);
+
+	for (i = 0; i < n; i++)
+		sum += va_arg(params, int);
+	va_end(params);
+
+	return (sum);
+}
+EOF
+cat <<EOF > 1-print_numbers.c
+#include "variadic_functions.h"
+#include <stdio.h>
+#include <stdarg.h>
+/**
+ * print_numbers - Function that prints numbers, followed by a new line
+ * @separator: strig to be printed btwn numbers
+ * @n: params passed in a function
+ */
+void print_numbers(const char *separator, const unsigned int n, ...)
+{
+	unsigned int i;
+	va_list list;
+
+	va_start(list, n);
+	for (i = 0; i < n; i++)
+	{
+		printf("%d", va_arg(list, int));
+		if (i != (n - 1) && separator != NULL)
+			printf("%s", separator);
+	}
+	printf("\n");
+
+	va_end(list);
+}
+EOF
+cat <<EOF > 2-print_strings.c
+#include "variadic_functions.h"
+#include <stdio.h>
+
+/**
+ * print_strings -  prints strings, followed by a new line
+ * @separator:string to be printed btn the strings
+ * @n: count of params
+ */
+void print_strings(const char *separator, const unsigned int n, ...)
+{
+	unsigned int i;
+	va_list list;
+	char *hold;
+
+	va_start(list, n);
+	for (i = 0; i < n; i++)
+	{
+		hold = va_arg(list, char*);
+		if (hold == NULL)
+			printf("(nil)");
+		else
+			printf("%s", hold);
+		if (i != (n - 1) && separator != NULL)
+			printf("%s", separator);
+	}
+	printf("\n");
+
+	va_end(list);
+}
+
+EOF
+cat <<EOF > 3-print_all.c
+#include "variadic_functions.h"
+
+/**
+ * print_all - Function that prints anything
+ * @format: list of types of arguments
+ */
+void print_all(const char * const format, ...)
+{
+	int i = 0;
+	char *str, *sep = "";
+
+	va_list list;
+
+	va_start(list, format);
+
+	if (format)
+	{
+		while (format[i])
+		{
+			switch (format[i])
+			{
+				case 'c':
+					printf("%s%c", sep,  va_arg(list, int));
+					break;
+				case 'i':
+					printf("%s%d", sep,  va_arg(list, int));
+					break;
+				case 'f':
+					printf("%s%f", sep,  va_arg(list, double));
+					break;
+				case 's':
+					str = va_arg(list, char *);
+					if (!str)
+						str = "(nil)";
+					printf("%s%s", sep, str);
+					break;
+				default:
+					i++;
+					continue;
+			}
+			sep = ", ";
+			i++;
+		}
+	}
+
+	printf("\n");
+	va_end(list);
+}
+EOF
+
+cat <<EOF > variadic_functions.h 
+#ifndef VERIADIC_FUNCTIONS_H
+#define VERIADIC_FUNCTIONS_H
+
+#include <stdio.h>
+#include <stdarg.h>
+
+int sum_them_all(const unsigned int n, ...);
+void print_numbers(const char *separator, const unsigned int n, ...);
+void print_strings(const char *separator, const unsigned int n, ...);
+void print_all(const char * const format, ...);
+
+#endif
+EOF
