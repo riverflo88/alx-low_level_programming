@@ -9,17 +9,8 @@
  */
 void print_name(char *name, void (*f)(char *))
 {
-	char *name_copy;
 
-	if (!name && !f)
+	if (!name || !f)
 		return;
-	
-	name_copy = malloc(sizeof(char) * (strlen(name) + 1));
-
-	if (!name_copy)
-		return;
-
-	strcpy(name_copy, name);
-	f(name_copy);
-	free(name_copy);
+	f(name)
 }
