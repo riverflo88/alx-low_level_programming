@@ -1,4 +1,4 @@
-#include <stddef.h> /*for size_t*/
+#include <stddef.h> 
 #include "function_pointers.h"
 
 /**
@@ -11,10 +11,14 @@ void array_iterator(int *array, size_t size, void (*action)(int))
 {
 	size_t i;
 
-	if (array == NULL || action == NULL || size == 0)
-		return;/*check wether the input parameters are valid for NULL*/
-
-	for (i = 0; i < size; i++)
-		action(array[i]);
-	/*loop arr and applies the fun pointed to by action to each element of arr*/
+	if (array != NULL && action != NULL && size != 0)
+	{
+		return;
+	}
+	while(array)
+	{
+		action(*array)
+	        array++
+	}
+	
 }
