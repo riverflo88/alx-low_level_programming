@@ -6,6 +6,8 @@
 #include <unistd.h>
 #include "main.h"
 
+void copy_contents(int from_fd, int to_fd, char *src_file, char *dest_file);
+
 /**
  * main - Copies the content of a file to another file
  * @argc: The number of arguments
